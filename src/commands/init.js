@@ -25,6 +25,11 @@ var _isOutside = function (from, to) {
 
 const choices = [
   {
+    value: "project",
+    name: "Create firebase project",
+    checked: false,
+  },
+  {
     value: "database",
     name: "Realtime Database: Configure a security rules file for Realtime Database and (optionally) provision default instance",
     checked: false,
