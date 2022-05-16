@@ -65,15 +65,7 @@ function writeDBRules(
 }
 
 async function createDefaultDatabaseInstance(project: string): Promise<DatabaseInstance> {
-  const selectedLocation = await promptOnce({
-    type: "list",
-    message: "Please choose the location for your default Realtime Database instance:",
-    choices: [
-      { name: "us-central1", value: DatabaseLocation.US_CENTRAL1 },
-      { name: "europe-west1", value: DatabaseLocation.EUROPE_WEST1 },
-      { name: "asia-southeast1", value: DatabaseLocation.ASIA_SOUTHEAST1 },
-    ],
-  });
+  const selectedLocation = DatabaseLocation.EUROPE_WEST1;
   let instanceName = `${project}-default-rtdb`;
   // check if the conventional default instance name is available.
   const checkOutput = await checkInstanceNameAvailable(
@@ -130,16 +122,7 @@ export async function doSetup(setup: DatabaseSetup, config: Config): Promise<voi
     if (setup.instance !== "") {
       instanceDetails = await getDatabaseInstanceDetails(setup.projectId, setup.instance);
     } else {
-      const confirm = await promptOnce({
-        type: "confirm",
-        name: "confirm",
-        default: true,
-        message:
-          "It seems like you haven’t initialized Realtime Database in your project yet. Do you want to set it up?",
-      });
-      if (confirm) {
         instanceDetails = await createDefaultDatabaseInstance(setup.projectId);
-      }
     }
   }
 
@@ -178,11 +161,7 @@ export async function doSetup(setup: DatabaseSetup, config: Config): Promise<voi
       filename
     )} already exists. Do you want to overwrite it with ${rulesDescription}?`;
 
-    writeRules = await promptOnce({
-      type: "confirm",
-      message: msg,
-      default: false,
-    });
+    writeRules = false;
   }
   if (writeRules) {
     if (instanceDetails) {
