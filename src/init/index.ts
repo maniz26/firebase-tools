@@ -35,7 +35,6 @@ export async function init(setup: Setup, config: any, options: any): Promise<any
   if (nextFeature) {
     if (!featureFns.has(nextFeature)) {
       const availableFeatures = Object.keys(features)
-        .filter((f) => f !== "project")
         .join(", ");
       throw new FirebaseError(
         `${clc.bold(nextFeature)} is not a valid feature. Must be one of ${availableFeatures}`
