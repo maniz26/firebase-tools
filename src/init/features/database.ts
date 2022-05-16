@@ -1,6 +1,5 @@
 import * as clc from "cli-color";
 import * as api from "../../api";
-import { prompt, promptOnce } from "../../prompt";
 import { logger } from "../../logger";
 import * as utils from "../../utils";
 import * as fsutils from "../../fsutils";
@@ -136,16 +135,7 @@ export async function doSetup(setup: DatabaseSetup, config: Config): Promise<voi
   logger.info("structured and when your data can be read from and written to.");
   logger.info();
 
-  await prompt(setup.config.database, [
-    {
-      type: "input",
-      name: "rules",
-      message: "What file should be used for Realtime Database Security Rules?",
-      default: "database.rules.json",
-    },
-  ]);
-
-  const filename = setup.config.database.rules;
+  const filename = "database.rules.json";
   if (!filename) {
     throw new FirebaseError("Must specify location for Realtime Database rules file.");
   }
