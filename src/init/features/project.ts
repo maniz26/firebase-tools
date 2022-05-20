@@ -41,7 +41,7 @@ function toProjectInfo(projectMetaData: FirebaseProjectMetadata): ProjectInfo {
   };
 }
 
-async function promptAndCreateNewProject(): Promise<FirebaseProjectMetadata> {
+async function promptAndCreateNewProject(projectId,displayName): Promise<FirebaseProjectMetadata> {
   utils.logBullet(
     "If you want to create a project in a Google Cloud organization or folder, please use " +
       `"firebase projects:create" instead, and return to this command when you've created the project.`
@@ -74,7 +74,7 @@ async function projectChoicePrompt(options: any): Promise<FirebaseProjectMetadat
     case OPTION_USE_PROJECT:
       return (0, projects_1.getOrPromptProject)(options);
     case OPTION_NEW_PROJECT:
-      return promptAndCreateNewProject();
+      return promptAndCreateNewProject(options.projectId,options.displayName);
     case OPTION_ADD_FIREBASE:
       return promptAndAddFirebaseToCloudProject();
     default:
