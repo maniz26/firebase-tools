@@ -109,9 +109,9 @@ async function createDefaultDatabaseInstance(project: string): Promise<DatabaseI
  * @param setup information helpful for database setup
  * @param config legacy config parameter. not used for database setup.
  */
-export async function doSetup(setup: DatabaseSetup, config: Config): Promise<void> {
+export async function doSetup(setup: DatabaseSetup, config: Config, options: any): Promise<void> {
   setup.config = setup.config || {};
-
+  setup.projectId = options.projectId;
   let instanceDetails;
   if (setup.projectId) {
     await ensure(setup.projectId, "firebasedatabase.googleapis.com", "database", false);
