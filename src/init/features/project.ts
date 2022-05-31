@@ -41,7 +41,7 @@ function toProjectInfo(projectMetaData: FirebaseProjectMetadata): ProjectInfo {
   };
 }
 
-async function promptAndCreateNewProject(projectId,displayName): Promise<FirebaseProjectMetadata> {
+async function promptAndCreateNewProject(projectId: string,displayName: string): Promise<FirebaseProjectMetadata> {
   utils.logBullet(
     "If you want to create a project in a Google Cloud organization or folder, please use " +
       `"firebase projects:create" instead, and return to this command when you've created the project.`
@@ -50,7 +50,7 @@ async function promptAndCreateNewProject(projectId,displayName): Promise<Firebas
       projectId: projectId,
       displayName: displayName
   };
-  return await (0, projects_1.createFirebaseProjectAndLog)(promptAnswer.projectId, {
+  return await createFirebaseProjectAndLog(promptAnswer.projectId, {
       displayName: promptAnswer.displayName,
   });
 }
