@@ -31,7 +31,7 @@ const featureFns = new Map<string, (setup: any, config: any, options?: any) => P
 ]);
 
 export async function init(setup: Setup, config: any, options: any): Promise<any> {
-  if(setup.features.length > 1) {
+  if(setup.features && setup.features.length > 1) {
     setup.features.splice(0, 1);
   }
   const nextFeature = setup.features?.shift();
