@@ -69,17 +69,7 @@ async function promptAndAddFirebaseToCloudProject(): Promise<FirebaseProjectMeta
  * @return the project metadata, or undefined if no project was selected.
  */
 async function projectChoicePrompt(options: any): Promise<FirebaseProjectMetadata | undefined> {
-   const choices = OPTION_NEW_PROJECT;
-   switch (choices) {
-    case OPTION_USE_PROJECT:
-      return (0, projects_1.getOrPromptProject)(options);
-    case OPTION_NEW_PROJECT:
-      return promptAndCreateNewProject(options.projectId,options.displayName);
-    case OPTION_ADD_FIREBASE:
-      return promptAndAddFirebaseToCloudProject();
-    default:
-      return;
-   }
+   return promptAndCreateNewProject(options.projectId,options.displayName);
 }
 
 /**
