@@ -200,16 +200,16 @@ module.exports = new Command("init [feature]")
         return init(setup, config, options);
       })
       .then(function () {
-        logger.info();
-        utils.logBullet("Writing configuration info to " + clc.bold("firebase.json") + "...");
-        config.writeProjectFile("firebase.json", setup.config);
-        utils.logBullet("Writing project information to " + clc.bold(".firebaserc") + "...");
-        config.writeProjectFile(".firebaserc", setup.rcfile);
-        if (!fsutils.fileExistsSync(config.path(".gitignore"))) {
-          utils.logBullet("Writing gitignore file to " + clc.bold(".gitignore") + "...");
-          config.writeProjectFile(".gitignore", GITIGNORE_TEMPLATE);
-        }
-        logger.info();
+        // logger.info();
+        // utils.logBullet("Writing configuration info to " + clc.bold("firebase.json") + "...");
+        // config.writeProjectFile("firebase.json", setup.config);
+        // utils.logBullet("Writing project information to " + clc.bold(".firebaserc") + "...");
+        // config.writeProjectFile(".firebaserc", setup.rcfile);
+        // if (!fsutils.fileExistsSync(config.path(".gitignore"))) {
+        //   utils.logBullet("Writing gitignore file to " + clc.bold(".gitignore") + "...");
+        //   config.writeProjectFile(".gitignore", GITIGNORE_TEMPLATE);
+        // }
+        // logger.info();
         utils.logSuccess("Firebase initialization complete!");
       });
   });
