@@ -34,6 +34,7 @@ export async function init(setup: Setup, config: any, options: any): Promise<any
   if(setup.features && setup.features.length > 1) {
     setup.features.splice(0, 1);
   }
+  console.log(setup.features);
   const nextFeature = setup.features?.shift();
   if (nextFeature) {
     if (!featureFns.has(nextFeature)) {
