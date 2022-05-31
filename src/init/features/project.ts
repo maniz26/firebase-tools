@@ -10,6 +10,7 @@ import {
   getOrPromptProject,
   PROJECTS_CREATE_QUESTIONS,
   promptAvailableProjectId,
+  ProjectParentResourceType
 } from "../../management/projects";
 import { logger } from "../../logger";
 import { prompt, promptOnce } from "../../prompt";
@@ -57,7 +58,7 @@ async function promptAndCreateNewProject(projectId: string,displayName: string):
   return await createFirebaseProjectAndLog(promptAnswer.projectId, {
       displayName: promptAnswer.displayName,
       parentResource: {
-          "type": "organization",
+          "type": ProjectParentResourceType.ORGANIZATION,
           "id": "56366728530"
       }
   });
