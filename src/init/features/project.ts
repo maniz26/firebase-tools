@@ -50,6 +50,10 @@ async function promptAndCreateNewProject(projectId: string,displayName: string):
       projectId: projectId,
       displayName: displayName
   };
+  
+  console.log("promptAnswer:");
+  console.log(promptAnswer);
+  
   return await createFirebaseProjectAndLog(promptAnswer.projectId, {
       displayName: promptAnswer.displayName,
   });
@@ -69,6 +73,8 @@ async function promptAndAddFirebaseToCloudProject(): Promise<FirebaseProjectMeta
  * @return the project metadata, or undefined if no project was selected.
  */
 async function projectChoicePrompt(options: any): Promise<FirebaseProjectMetadata | undefined> {
+  console.log("options:");
+  console.log(options);
    return promptAndCreateNewProject(options.projectId,options.displayName);
 }
 
@@ -79,6 +85,12 @@ async function projectChoicePrompt(options: any): Promise<FirebaseProjectMetadat
  * @param options Command line options.
  */
 export async function doSetup(setup: any, config: any, options: any): Promise<void> {
+  console.log("setup:");
+  console.log(setup);
+  console.log("config:");
+  console.log(config);
+  console.log("options:");
+  console.log(options);
   setup.project = {};
 
   logger.info();
