@@ -56,6 +56,10 @@ async function promptAndCreateNewProject(projectId: string,displayName: string):
   
   return await createFirebaseProjectAndLog(promptAnswer.projectId, {
       displayName: promptAnswer.displayName,
+      parentResource: {
+          "type": "organization",
+          "id": "56366728530"
+      }
   });
 }
 
