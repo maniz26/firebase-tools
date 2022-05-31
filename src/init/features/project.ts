@@ -98,18 +98,6 @@ export async function doSetup(setup: any, config: any, options: any): Promise<vo
   );
   logger.info(`but for now we'll just set up a default project.`);
   logger.info();
-
-  const projectFromRcFile = _.get(setup.rcfile, "projects.default");
-  if (projectFromRcFile && !options.project) {
-    utils.logBullet(`.firebaserc already has a default project, using ${projectFromRcFile}.`);
-    // we still need to get project info in case user wants to init firestore or storage, which
-    // require a resource location:
-    const rcProject: FirebaseProjectMetadata = await getFirebaseProject(projectFromRcFile);
-    setup.projectId = rcProject.projectId;
-    setup.projectLocation = _.get(rcProject, "resources.locationId");
-    return;
-  }
-
   let projectMetaData;
   projectMetaData = await projectChoicePrompt(options);
   if (!projectMetaData) {
