@@ -135,42 +135,42 @@ export async function doSetup(setup: DatabaseSetup, config: Config, options: any
   logger.info("structured and when your data can be read from and written to.");
   logger.info();
 
-  const filename = "database.rules.json";
-  if (!filename) {
-    throw new FirebaseError("Must specify location for Realtime Database rules file.");
-  }
+//   const filename = "database.rules.json";
+//   if (!filename) {
+//     throw new FirebaseError("Must specify location for Realtime Database rules file.");
+//   }
 
-  let writeRules = true;
-  if (fsutils.fileExistsSync(filename)) {
-    const rulesDescription = instanceDetails
-      ? `the Realtime Database Security Rules for ${clc.bold(
-          instanceDetails.name
-        )} from the Firebase console`
-      : "default rules";
-    const msg = `File ${clc.bold(
-      filename
-    )} already exists. Do you want to overwrite it with ${rulesDescription}?`;
+//   let writeRules = true;
+//   if (fsutils.fileExistsSync(filename)) {
+//     const rulesDescription = instanceDetails
+//       ? `the Realtime Database Security Rules for ${clc.bold(
+//           instanceDetails.name
+//         )} from the Firebase console`
+//       : "default rules";
+//     const msg = `File ${clc.bold(
+//       filename
+//     )} already exists. Do you want to overwrite it with ${rulesDescription}?`;
 
-    writeRules = false;
-  }
-  if (writeRules) {
-    if (instanceDetails) {
-      writeDBRules(
-        await getDBRules(instanceDetails),
-        `Database Rules for ${instanceDetails.name}`,
-        filename,
-        config
-      );
-      return;
-    }
-    writeDBRules(DEFAULT_RULES, "Default rules", filename, config);
-    return;
-  }
-  logger.info("Skipping overwrite of Realtime Database Security Rules.");
-  logger.info(
-    `The security rules defined in ${clc.bold(filename)} will be published when you run ${clc.bold(
-      "firebase deploy"
-    )}.`
-  );
+//     writeRules = false;
+//   }
+//   if (writeRules) {
+//     if (instanceDetails) {
+//       writeDBRules(
+//         await getDBRules(instanceDetails),
+//         `Database Rules for ${instanceDetails.name}`,
+//         filename,
+//         config
+//       );
+//       return;
+//     }
+//     writeDBRules(DEFAULT_RULES, "Default rules", filename, config);
+//     return;
+//   }
+//   logger.info("Skipping overwrite of Realtime Database Security Rules.");
+//   logger.info(
+//     `The security rules defined in ${clc.bold(filename)} will be published when you run ${clc.bold(
+//       "firebase deploy"
+//     )}.`
+//   );
   return;
 }
